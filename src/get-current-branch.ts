@@ -1,9 +1,10 @@
 import { getEventPayload, isPullRequestEvent, isPushEvent } from "./event";
+import { isTag } from "./is-tag";
 
 export const getCurrentBranch = () => {
   const event = getEventPayload();
 
-  if (isPushEvent(event) && event.push.ref.startsWith("refs/tags/")) {
+  if (isTag()) {
     return "";
   }
 

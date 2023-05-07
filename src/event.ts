@@ -10,6 +10,10 @@ type PushEvent = {
   };
 };
 
+type TagPushEvent = {
+  ref: string;
+};
+
 type PullRequestEvent = {
   pull_request: {
     head: {
@@ -25,7 +29,11 @@ type WorkflowDispatchEvent = {
   ref: string;
 };
 
-type Event = PushEvent | PullRequestEvent | WorkflowDispatchEvent;
+type Event =
+  | PushEvent
+  | TagPushEvent
+  | PullRequestEvent
+  | WorkflowDispatchEvent;
 
 let cache: Event | null = null;
 
