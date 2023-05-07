@@ -1,0 +1,59 @@
+name: Test
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+  pull_request_target:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  test:
+    name: Test branch-name
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run unit tests
+        if: ${{ !env.ACT }}
+        run: npm test
+      - name: Display GitHub context for debugging
+        run: |
+          echo '${{ toJson(github) }}'
+      - name: Check event
+        id: check-event
+        run: |
+          echo "is_tag=$(npx ts-node ./test/helpers/echo-is-tag.ts)" >> "$GITHUB_OUTPUT"
+      - name: Test push event
+        if: github.event_name == 'push' && steps.check-event.outputs.is_tag == 'false'
+        run: |
+          npx vitest run ./test/e2e/push.test.ts
+      - name: Test push tag event
+        if: github.event_name == 'push' && steps.check-event.outputs.is_tag == 'true'
+        run: |
+          npx vitest run ./test/e2e/push-tag.test.ts
+      - name: Test pull_request event
+        if: github.event_name == 'pull_request'
+        run: |
+          npx vitest run ./test/e2e/pull-request.test.ts
+      - name: Test pull_request_target event
+        if: github.event_name == 'pull_request_target'
+        run: |
+          npx vitest run ./test/e2e/pull-request-target.test.ts
+      - name: Test workflow_dispatch event
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          npx vitest run ./test/e2e/workflow-dispatch.test.ts
