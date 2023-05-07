@@ -7,10 +7,6 @@ describe("push", () => {
   });
 
   test("getCurrentBranch", () => {
-    if (process.env.ACT) {
-      expect(getCurrentBranch()).toEqual("");
-    } else {
-      expect(getCurrentBranch()).toBeTruthy();
-    }
+    expect(getCurrentBranch()).toEqual("");
   });
 });

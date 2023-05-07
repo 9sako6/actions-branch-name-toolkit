@@ -33,6 +33,12 @@ jobs:
       - name: Display GitHub context for debugging
         run: |
           echo '${{ toJson(github) }}'
+
+          echo '---'
+
+          echo $GITHUB_EVENT_PATH
+
+          cat "$(echo $GITHUB_EVENT_PATH)"
       - name: Check event
         id: check-event
         run: |
