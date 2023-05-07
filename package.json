@@ -1,6 +1,6 @@
 {
   "name": "actions-branch-toolkit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "GitHub Actions toolkit to retrieve branch or tag names with support for all events.",
   "main": "dist/index.js",
   "files": [
