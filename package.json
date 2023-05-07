@@ -1,0 +1,29 @@
+{
+  "name": "actions-branch-toolkit",
+  "version": "0.0.0",
+  "description": "GitHub Actions toolkit to retrieve branch or tag names with support for all events.",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9sako6/actions-branch-toolkit.git"
+  },
+  "author": "9sako6",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/9sako6/actions-branch-toolkit/issues"
+  },
+  "homepage": "https://github.com/9sako6/actions-branch-toolkit#readme",
+  "devDependencies": {
+    "@types/node": "^20.1.0",
+    "typescript": "^5.0.4"
+  }
+}
