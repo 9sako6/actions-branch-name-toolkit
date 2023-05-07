@@ -1,6 +1,3 @@
 {
-  "push": {
-    "base_ref": "refs/heads/main",
-    "ref": "refs/tags/v1.0.0"
-  }
+  "ref": "refs/tags/v1.0.0"
 }

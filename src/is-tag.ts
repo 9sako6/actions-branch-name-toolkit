@@ -1,7 +1,9 @@
-import { getEventPayload } from "./event";
+import { getEventPayload, isPushEvent } from "./event";
 
 export const isTag = () => {
   const event = getEventPayload();
 
-  return "ref" in event && event.ref.startsWith("refs/tags/");
+  return (
+    !isPushEvent(event) && "ref" in event && event.ref.startsWith("refs/tags/")
+  );
 };
