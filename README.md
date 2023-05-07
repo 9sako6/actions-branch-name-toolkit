@@ -1,6 +1,8 @@
 # actions-branch-toolkit
 
-`actions-branch-toolkit` is a simple npm package that allows you to easily retrieve branch names in your GitHub Actions workflow, regardless of the triggering event.
+[![npm version](https://badge.fury.io/js/actions-branch-toolkit.svg)](https://badge.fury.io/js/actions-branch-toolkit)
+
+This is a simple npm package that allows you to easily retrieve branch names in your GitHub Actions workflow, regardless of the triggering event.
 Enabling users to get the current branch name without dealing with the complexity of different event types.
 
 Inspired by [tj-actions/branch-names](https://github.com/tj-actions/branch-names).
